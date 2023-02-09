@@ -104,7 +104,7 @@ export interface BleClientInterface {
    * @param callback
    */
   requestLEScan(options: RequestBleDeviceOptions, callback: (result: ScanResult) => void): Promise<void>;
-
+  listBondedDevices(options: any, callback: (result: ScanResult) => void): Promise<void>;
   /**
    * Stop scanning for BLE devices. For an example, see [usage](#usage).
    */
@@ -281,6 +281,7 @@ export interface BleClientInterface {
 
 class BleClientClass implements BleClientInterface {
   private scanListener: PluginListenerHandle | null = null;
+  private pairedDeviceList: PluginListenerHandle | null = null;
   private eventListeners = new Map<string, PluginListenerHandle>();
   private queue = getQueue(true);
 
@@ -405,6 +406,17 @@ class BleClientClass implements BleClientInterface {
         callback(result);
       });
       await BluetoothLe.requestLEScan(options);
+    });
+  }
+
+  async listBondedDevices(options: any, callback: (result: any) => void): Promise<void> {
+    options = this.validateRequestBleDeviceOptions(options);
+    await this.queue(async () => {
+      await this.pairedDeviceList?.remove();
+      this.pairedDeviceList = await BluetoothLe.addListener('pairedDeviceList', (resultDevices: any) => {
+        callback(resultDevices);
+      });
+      await BluetoothLe.listBondedDevices(options);
     });
   }
 

@@ -113,6 +113,10 @@ export class BluetoothLeWeb extends WebPlugin implements BluetoothLePlugin {
     });
   }
 
+  listBondedDevices(options?: any): Promise<void> {
+    return options;
+  }
+
   private onAdvertisementReceivedCallback = this.onAdvertisementReceived.bind(this);
 
   private onAdvertisementReceived(event: BluetoothAdvertisingEvent): void {

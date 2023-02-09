@@ -255,7 +255,8 @@ export interface BluetoothLePlugin {
   openAppSettings(): Promise<void>;
   setDisplayStrings(displayStrings: DisplayStrings): Promise<void>;
   requestDevice(options?: RequestBleDeviceOptions): Promise<BleDevice>;
-  requestLEScan(options?: RequestBleDeviceOptions): Promise<void>;
+  requestLEScan(options?: any): Promise<void>;
+  listBondedDevices(options?: any): Promise<void>;
   stopLEScan(): Promise<void>;
   getDevices(options: GetDevicesOptions): Promise<GetDevicesResult>;
   getConnectedDevices(options: GetConnectedDevicesOptions): Promise<GetDevicesResult>;

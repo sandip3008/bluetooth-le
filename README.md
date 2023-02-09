@@ -61,6 +61,7 @@ Below is an index of all the methods available.
 - [`setDisplayStrings(...)`](#setdisplaystrings)
 - [`requestDevice(...)`](#requestdevice)
 - [`requestLEScan(...)`](#requestlescan)
+- [`listBondedDevices(...)`](#listbondeddevices)
 - [`stopLEScan()`](#stoplescan)
 - [`getDevices(...)`](#getdevices)
 - [`getConnectedDevices(...)`](#getconnecteddevices)
@@ -529,6 +530,19 @@ Scanning will continue until `stopLEScan` is called. For an example, see [usage]
 | -------------- | --------------------------------------------------------------------------- |
 | **`options`**  | <code><a href="#requestbledeviceoptions">RequestBleDeviceOptions</a></code> |
 | **`callback`** | <code>(result: <a href="#scanresult">ScanResult</a>) =&gt; void</code>      |
+
+---
+
+### listBondedDevices(...)
+
+```typescript
+listBondedDevices(options: any, callback: (result: ScanResult) => void) => Promise<void>
+```
+
+| Param          | Type                                                                   |
+| -------------- | ---------------------------------------------------------------------- |
+| **`options`**  | <code>any</code>                                                       |
+| **`callback`** | <code>(result: <a href="#scanresult">ScanResult</a>) =&gt; void</code> |
 
 ---
 
